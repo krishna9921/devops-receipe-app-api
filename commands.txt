@@ -1,0 +1,33 @@
+# To create user inside the docker image which is running now.
+
+docker compose run --rm app sh -c "python manage.py createsuperuser"
+
+# clear the docker volumes 
+
+docker compose down --volumes
+
+docker compose -f docker-compose-deploy.yml down --volumes
+
+# Rebuild the image
+docker compose -f docker-compose-deploy.yml build
+
+# Deploy the image
+docker compose -f docker-compose-deploy.yml up
+
+git commit -am "switching from usgwi to gunicorn"
+
+git push origin 
+
+aws-valut exec phani.project --duration=2h
+
+# TF COMMANDS TO RUN VIA DOCKER 
+
+docker compose run --rm terraform -chdir=setup init
+
+docker compose run --rm terraform -chdir=setup fmt
+
+docker compose run --rm terraform -chdir=setup validate
+
+docker compose run --rm terraform -chdir=setup plan
+
+docker compose run --rm terraform -chdir=setup apply
