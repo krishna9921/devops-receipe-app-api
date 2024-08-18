@@ -54,3 +54,5 @@ Add ecr tf files under setup directory
 # cd infra
 
 docker compose run --rm terraform -chdir=setup output
+
+
