@@ -39,7 +39,8 @@ TF commands to apply in sequence.
 
 Normal TF Commands to create s3 and dynamo 
 
-docker compose --rm terraform -chdir=setup  init/validate/fmt
+docker compose --rm terraform -chdir=setup  init 
+validate/fmt
 docker compose --rm terraform -chdir=deploy init/validate/fmt 
 
 Add iam.tf and o/p.tf under the setup directory 
