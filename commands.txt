@@ -31,3 +31,26 @@ docker compose run --rm terraform -chdir=setup validate
 docker compose run --rm terraform -chdir=setup plan
 
 docker compose run --rm terraform -chdir=setup apply
+
+
+###############################
+
+TF commands to apply in sequence.
+
+Normal TF Commands to create s3 and dynamo 
+
+docker compose --rm terraform -chdir=setup  init/validate/fmt
+docker compose --rm terraform -chdir=deploy init/validate/fmt 
+
+Add iam.tf and o/p.tf under the setup directory 
+
+docker compose --rm terraform -chdir=setup plan 
+
+
+Add ecr tf files under setup directory 
+
+# setting up environment variables
+
+# cd infra
+
+docker compose run --rm terraform -chdir=setup output
